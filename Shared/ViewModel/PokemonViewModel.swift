@@ -16,7 +16,16 @@ enum FetchError: Error {
 
 }
 
-class PokemonViewModel {
+class PokemonViewModel: ObservableObject {
+
+    @Published var pokemon: [Pokemon] = []
+
+    init() {
+        Task {  
+            pokemon = try await fetchPokemon()
+        }
+    }
+
     func fetchPokemon() async throws -> [Pokemon] {
         guard let url = URL(string: "https://pokedex-bb36f.firebaseio.com/pokemon.json") else { throw FetchError.badURL }
         let request = URLRequest(url: url)
@@ -25,6 +34,8 @@ class PokemonViewModel {
         guard let data = data.removeNullsFrom(string: "null,") else { throw FetchError.badData }
         return try JSONDecoder().decode([Pokemon].self, from: data)
     }
+
+    let MOCK_POKEMON = Pokemon(id: 0, name: "Bulbasaur", type: "poison", imageURL: "https://firebasestorage.googleapis.co...", description: "This is a test example of what the text in the description would look like for the given pokemon. This is a test example of what the text in the description would look like for the given pokemon.", attack: 49, defense: 52, height: 10, weight: 98)
 }
 
 extension Data {
