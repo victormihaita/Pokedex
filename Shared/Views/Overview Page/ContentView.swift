@@ -12,6 +12,18 @@ import SDWebImageSwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel = PokemonViewModel()
 
+    @State var searchText = ""
+
+    var fiterPokemon: [Pokemon] {
+        if searchText == ""  {
+            return viewModel.pokemon
+        } else {
+            return viewModel.pokemon.filter {
+                $0.name.lowercased().contains(searchText.lowercased())
+            }
+        }
+    }
+
     let columns = [
         GridItem(.adaptive(minimum: 300, maximum: 400))
     ]
@@ -20,7 +32,7 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 24) {
-                    ForEach(viewModel.pokemon, id: \.id) { poke in
+                    ForEach(fiterPokemon, id: \.id) { poke in
                         NavigationLink(destination: PokemonDetailView(pokemon: poke)) {
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
@@ -47,16 +59,17 @@ struct ContentView: View {
                                     .frame(width: 100, height: 100)
                             }
                             .padding()
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 16)
-                                        .stroke(poke.typeColor, lineWidth: 1)
-                                )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(poke.typeColor, lineWidth: 1)
+                            )
                         }
                     }
                 }
                 .padding(.horizontal)
             }
             .navigationTitle("Pokedex")
+            .searchable(text: $searchText)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
