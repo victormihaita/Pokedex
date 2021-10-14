@@ -35,14 +35,6 @@ struct PokemonDetailView: View {
                         .foregroundColor(pokemon.typeColor)
 
                     VStack {
-
-                        if !pokemon.isFavorite {
-                            Label("Favorite", systemImage: "star.fill")
-                                .foregroundColor(pokemon.typeColor)
-                                .padding(5)
-                                .background(Capsule().foregroundColor(.white))
-                        }
-
                         Text(pokemon.description.replacingOccurrences(of: "\n", with: ""))
                             .foregroundColor(.white)
                             .padding()

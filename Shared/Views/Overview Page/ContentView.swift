@@ -46,6 +46,7 @@ struct ContentView: View {
                                             .frame(width: 10, height: 10)
                                     }
                                     Text(poke.description)
+                                        .multilineTextAlignment(.leading)
                                         .font(.caption)
                                         .lineLimit(2)
                                 }
@@ -64,6 +65,7 @@ struct ContentView: View {
                                     .stroke(poke.typeColor, lineWidth: 1)
                             )
                         }
+
                     }
                 }
                 .padding(.horizontal)

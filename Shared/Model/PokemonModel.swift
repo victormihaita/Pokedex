@@ -23,6 +23,7 @@ struct Pokemon: Identifiable, Decodable {
     let weight: Int
 
     var isFavorite = false
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name
