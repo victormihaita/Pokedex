@@ -34,9 +34,3 @@ struct StatView: View {
         }
     }
 }
-
-struct StatView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatView(pokemon: PokemonViewModel().MOCK_POKEMON, statName: "Atk", statColor: .blue, statValue: 55)
-    }
-}

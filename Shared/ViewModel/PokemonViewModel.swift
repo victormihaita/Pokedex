@@ -34,8 +34,6 @@ class PokemonViewModel: ObservableObject {
         guard let data = data.removeNullsFrom(string: "null,") else { throw FetchError.badData }
         return try JSONDecoder().decode([Pokemon].self, from: data)
     }
-
-    let MOCK_POKEMON = Pokemon(id: 0, name: "Bulbasaur", type: "poison", imageURL: "https://firebasestorage.googleapis.co...", description: "This is a test example of what the text in the description would look like for the given pokemon. This is a test example of what the text in the description would look like for the given pokemon.", attack: 49, defense: 52, height: 10, weight: 98)
 }
 
 extension Data {

@@ -24,10 +24,3 @@ struct PokemonImage: View {
             .shadow(radius: 5)
     }
 }
-
-struct PokemonImage_Previews: PreviewProvider {
-    static var previews: some View {
-        PokemonImage(imageURL: URL(string: PokemonViewModel().MOCK_POKEMON.imageURL)!)
-.previewInterfaceOrientation(.portrait)
-    }
-}

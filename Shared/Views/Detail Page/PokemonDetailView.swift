@@ -48,9 +48,3 @@ struct PokemonDetailView: View {
         }
     }
 }
-
-struct PokemonDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PokemonDetailView(pokemon: PokemonViewModel().MOCK_POKEMON)
-    }
-}

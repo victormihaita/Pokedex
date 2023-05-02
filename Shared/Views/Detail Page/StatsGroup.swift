@@ -28,9 +28,3 @@ struct StatsGroup: View {
         }
     }
 }
-
-struct StatsGroup_Previews: PreviewProvider {
-    static var previews: some View {
-        StatsGroup(pokemon: PokemonViewModel().MOCK_POKEMON)
-    }
-}
